@@ -1,30 +1,65 @@
-[{
-	"url":"src/imgs/game/0.png"
-},
 {
-	"url":"src/imgs/game/1.png"
-},
-{
-	"url":"src/imgs/game/2.png"
-},
-{
-	"url":"src/imgs/game/3.png"
-},
-{
-	"url":"src/imgs/game/4.png"
-},
-{
-	"url":"src/imgs/game/5.png"
-},
-{
-	"url":"src/imgs/game/6.png"
-},
-{
-	"url":"src/imgs/game/7.png"
-},
-{
-	"url":"src/imgs/game/8.png"
-},
-{
-	"url":"src/imgs/game/9.png"
-}]
+	"list1":[{
+		"url":"src/imgs/game/0.png"
+		},
+		{
+			"url":"src/imgs/game/1.png"
+		},
+		{
+			"url":"src/imgs/game/2.png"
+		},
+		{
+			"url":"src/imgs/game/3.png"
+		},
+		{
+			"url":"src/imgs/game/4.png"
+		},
+		{
+			"url":"src/imgs/game/5.png"
+		},
+		{
+			"url":"src/imgs/game/6.png"
+		},
+		{
+			"url":"src/imgs/game/7.png"
+		},
+		{
+			"url":"src/imgs/game/8.png"
+		},
+		{
+			"url":"src/imgs/game/9.png"
+		}],
+	"list2":[{
+			"url":"src/imgs/game/a1.png"
+		},{
+			"url":"src/imgs/game/a2.png"
+		},{
+			"url":"src/imgs/game/a3.png"
+		},{
+			"url":"src/imgs/game/a4.png"
+		},{
+			"url":"src/imgs/game/a5.png"
+		},{
+			"url":"src/imgs/game/a6.png"
+		},{
+			"url":"src/imgs/game/a7.png"
+		},{
+			"url":"src/imgs/game/a8.png"
+		},{
+			"url":"src/imgs/game/a9.png"
+		},{
+			"url":"src/imgs/game/a10.png"
+		},{
+			"url":"src/imgs/game/a11.png"
+		},{
+			"url":"src/imgs/game/a12.png"
+		},{
+			"url":"src/imgs/game/a13.png"
+		},{
+			"url":"src/imgs/game/a14.png"
+		},{
+			"url":"src/imgs/game/a15.png"
+		},{
+			"url":"src/imgs/game/a16.png"
+		}]
+}

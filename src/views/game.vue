@@ -45,7 +45,7 @@
 			getImgs: function() {
 				axios.get('src/data/game.json')
 					.then((res) => {
-						this.imgs = res.data
+						this.imgs = res.data.list2
 					})
 			},
 			//随机生成几个图片
@@ -91,12 +91,12 @@
 			//生成图片及动画
 			generate: function() {
 				let _this = this
-				_this.isShow = true
-				_this.isTake = true
-				if(_this.number){
+				if(_this.number && _this.number < _this.imgs.length){
+					_this.isShow = true
+					_this.isTake = true
 					_this.rImgs = _this.randomImgs(_this.imgs,_this.number)
 				}else{
-					alert("请输入数值")
+					alert("请输入正确数值")
 				}
 			},
 			//抽取
