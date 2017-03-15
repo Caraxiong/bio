@@ -1,12 +1,9 @@
-// .game-box{
-// 	display: flex; 
-// 	flex-direction: column;
-// 	flex-wrap: wrap;
-// 	justify-content:space-between;
-// }
 .img-b{
 	width: 240px;
 	height:240px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 2px #ccc;
 	display: inline-flex;
 	margin: 10px 0 0 10px;
 	position: relative;
@@ -52,18 +49,4 @@
 	background: rgba(0, 0, 0, 0.5) !important;
 	filter:alpha(opacity=50);
 	z-index: 999;
-	// .game-d,
-	// .game-o{
-	// 	margin: auto;
-	// 	width: 260px;
-	// 	height:260px;
-	// 	background: #fff;
-	// 	box-shadow: 0 0 2px #ccc;
-	// }
-	// img{
-	// 	position: absolute;
-	// 	width:240px;
-	// 	display: block;
-	// 	margin:10px;
-	// }
 }

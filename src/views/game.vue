@@ -2,23 +2,14 @@
 	<div>
 		<div class="btn-b">
 			<input type="text" v-model="number" placeholder="请输入数值">
-			<button class="btn" @click="generate">随机生成</button>
+			<button class="btn" @click="generate" v-show="isRandom">随机生成</button>
 			<button class="btn" @click="extract" v-show="isTake">随机抽取</button>
 			<button class="btn" @click="contrast" v-show="isCompare">对比</button>
 		</div>
 		<div v-for="item in imgs" class="img-b">
-			<img :src="item.url" alt="图片">
+			<img :src="item.url" :title="item.des">
 		</div>
 		<div class="overlay" v-show="isShow"></div>
-		<!-- 生成层 -->
-		<!-- <div class="overlay"  @click="isShow = false">
-			<div class="game-d">
-				<img :src="item.url" alt="图片" v-for="item in rImgs">
-			</div>
-			<div class="game-o" v-show="isGoCompare">
-				<img :src="item.url" alt="图片" v-for="item in originalrImgs">
-			</div>
-		</div> -->
 	</div>
 </template>
 <script>
@@ -30,11 +21,12 @@
 				imgs : [],
 				rImgs : [],
 				originalrImgs : [],
+				isRandom : true,
 				isShow : false,
 				isTake : false,
 				isCompare : false,
-				isGoCompare : false,
-				number : ''
+				number : '',
+				rmImg:''
 			}
 		},
 		mounted:function() {
@@ -54,10 +46,12 @@
 				let len = arr.length
 				let rArr = []
 				//图片宽度
-				let width = 240
-				let height = 240
+				let width = 262
+				let height = 262
+				let scrollT = document.documentElement.scrollTop || document.body.scrollTop
 				let wL = (window.innerWidth - width) / 2
-				let wT = (window.innerHeight - height) / 2
+				let wT = scrollT > 0 ? (window.innerHeight - height) / 2 + scrollT : (window.innerHeight - height) / 2
+				
 				for(let i = 0;i < num;i++){
 					if(len > 0){
 						//产生一个随机索引
@@ -67,13 +61,14 @@
 						let target = document.querySelectorAll(".img-b")[randomIndex]
 						//计算元素位置到页面中心的距离
 						let left = target.getBoundingClientRect().left - wL
-						let top = target.getBoundingClientRect().top - wT
+						let top = scrollT > 0 ? target.getBoundingClientRect().top - wT + scrollT : target.getBoundingClientRect().top - wT
+
 						target.style.zIndex = 1002
 						target.style.transform = 'translate('+ -left +'px,' + -top+'px)'
 						// target.style.opacity = 0
 
 						if(rArr.indexOf(arr[randomIndex]) !== '-1'){
-							rArr.push({"index":randomIndex,"val":arr[randomIndex],"left":left,"top":top})
+							rArr.push({"index":randomIndex,"val":arr[randomIndex]})
 						}else{
 							i -= 1
 						}
@@ -83,6 +78,7 @@
 				}
 				//页面中心背景框
 				let div = document.createElement("div");
+				div.setAttribute("id","myDiv")
 				div.style.width = width+'px'
 				div.style.height = height+'px'
 				div.style.position = 'absolute'
@@ -100,23 +96,36 @@
 				let len = arr.length
 				let randomIndex = Math.floor(Math.random()*len)
 				let index = arr[randomIndex].index
-				_this.animate(randomIndex,arr,document.querySelectorAll(".img-b"),0)
-				let img = arr.splice(randomIndex,1)
+				_this.animate(randomIndex,arr,document.querySelectorAll(".img-b"),0,0)
+
+				_this.rmImg = arr.splice(randomIndex,1)
 
 				_this.originalrImgs = arr.concat({"index":index,"val":arr[randomIndex],"left":0,"top":0});
-
 				return arr
 			},
 			//index:在数组中的索引,arr:所操作的数组,imgDiv:页面所有dom节点,opacity:是否显示
-			animate: function(i,arr,imgDiv,opacity){
+			animate: function(i,arr,imgDiv,opacity,time){
 				//取到要删除的元素在所有图片中的位置索引
 				let n = arr[i].index
-				let left = arr[i].left
-				let top = arr[i].top
 				let target = imgDiv[n]
 				target.style.zIndex = 1
-				target.style.transform = 'translate('+ left +'px,' + top+'px)'
+				target.style.transform = 'translate('+ 0 +'px,' + 0+'px)'
+	            target.style.transition = 'all '+ time +'s ease'
 				target.style.opacity = opacity
+			},
+			//放大动画
+			zoomIn: function(img,imgDiv){
+				let n = img[0].index
+				let target = imgDiv[n]
+				target.style.transform = 'scale(2)'
+	            target.style.transition = 'all .8s ease'
+			},
+			//还原动画
+			zoomOut: function(img,imgDiv){
+				let n = img[0].index
+				let target = imgDiv[n]
+				target.style.transform = 'scale(1)'
+	            target.style.transition = 'all 0s ease'
 			},
 			//生成图片及动画
 			generate: function() {
@@ -125,9 +134,11 @@
 				_this.isShow = false
 				_this.isTake = false
 				_this.isCompare = false
-				_this.isGoCompare = false
-
+				if(_this.rmImg){
+					_this.zoomOut(_this.rmImg,document.querySelectorAll(".img-b"))
+				}
 				if(_this.number && _this.number < _this.imgs.length){
+					_this.isRandom = false
 					_this.isShow = true
 					_this.isTake = true
 					_this.rImgs = _this.randomImgs(_this.imgs,_this.number)
@@ -147,7 +158,16 @@
 				let _this = this
 				let oLen = _this.originalrImgs.length
 				let len = _this.rImgs.length
-				_this.isGoCompare = true
+				let myArr = []
+
+				_this.isShow = false
+				_this.isCompare = false
+				_this.isRandom = true
+				document.body.removeChild(document.getElementById("myDiv"))
+
+				_this.originalrImgs.forEach(function(item,i){
+					myArr.push(item)
+				})
 				for(let i = oLen-1;i >=0 ;i--){
 					for(let j= len -1;j >=0;j--){
 						if(_this.originalrImgs[i] == _this.rImgs[j]){
@@ -156,9 +176,12 @@
 						}
 					}
 					(function(){         
-			       	  	_this.animate(i,_this.originalrImgs,document.querySelectorAll(".img-b"),1)
+			       	  	_this.animate(i,myArr,document.querySelectorAll(".img-b"),1,0.8)
 				   	})(i);//调用时参数
 				}
+
+			   		
+			   	_this.zoomIn(_this.rmImg,document.querySelectorAll(".img-b"))
 			}
 		}
 	}
