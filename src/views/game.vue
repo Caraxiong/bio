@@ -9,15 +9,16 @@
 		<div v-for="item in imgs" class="img-b">
 			<img :src="item.url" alt="图片">
 		</div>
+		<div class="overlay" v-show="isShow"></div>
 		<!-- 生成层 -->
-		<div class="overlay" v-show="isShow" @click="isShow = false">
+		<!-- <div class="overlay"  @click="isShow = false">
 			<div class="game-d">
 				<img :src="item.url" alt="图片" v-for="item in rImgs">
 			</div>
 			<div class="game-o" v-show="isGoCompare">
 				<img :src="item.url" alt="图片" v-for="item in originalrImgs">
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 <script>
@@ -52,6 +53,11 @@
 			randomImgs: function(arr,num) {
 				let len = arr.length
 				let rArr = []
+				//图片宽度
+				let width = 240
+				let height = 240
+				let wL = (window.innerWidth - width) / 2
+				let wT = (window.innerHeight - height) / 2
 				for(let i = 0;i < num;i++){
 					if(len > 0){
 						//产生一个随机索引
@@ -59,17 +65,15 @@
 						let randomIndex = Math.floor(Math.random()*len)
 						//获取随机生成的元素
 						let target = document.querySelectorAll(".img-b")[randomIndex]
-						//图片宽度
-						let width = 240
-						let height = 240
 						//计算元素位置到页面中心的距离
-						let left = target.getBoundingClientRect().left - (window.innerWidth - width) / 2
-						let top = target.getBoundingClientRect().top - (window.innerHeight - height) / 2
+						let left = target.getBoundingClientRect().left - wL
+						let top = target.getBoundingClientRect().top - wT
+						target.style.zIndex = 1002
 						target.style.transform = 'translate('+ -left +'px,' + -top+'px)'
-						target.style.opacity = 0
+						// target.style.opacity = 0
 
 						if(rArr.indexOf(arr[randomIndex]) !== '-1'){
-							rArr.push(arr[randomIndex])
+							rArr.push({"index":randomIndex,"val":arr[randomIndex],"left":left,"top":top})
 						}else{
 							i -= 1
 						}
@@ -77,6 +81,17 @@
 						break
 					}
 				}
+				//页面中心背景框
+				let div = document.createElement("div");
+				div.style.width = width+'px'
+				div.style.height = height+'px'
+				div.style.position = 'absolute'
+				div.style.left = wL+'px'
+				div.style.top = wT+'px'
+				div.style.background = '#fff'
+				div.style.zIndex = 1001
+				document.body.appendChild(div)
+
 				return rArr
 			},
 			//随机删除一个图片
@@ -84,13 +99,34 @@
 				let _this = this
 				let len = arr.length
 				let randomIndex = Math.floor(Math.random()*len)
+				let index = arr[randomIndex].index
+				_this.animate(randomIndex,arr,document.querySelectorAll(".img-b"),0)
 				let img = arr.splice(randomIndex,1)
-				_this.originalrImgs = arr.concat(img);
+
+				_this.originalrImgs = arr.concat({"index":index,"val":arr[randomIndex],"left":0,"top":0});
+
 				return arr
+			},
+			//index:在数组中的索引,arr:所操作的数组,imgDiv:页面所有dom节点,opacity:是否显示
+			animate: function(i,arr,imgDiv,opacity){
+				//取到要删除的元素在所有图片中的位置索引
+				let n = arr[i].index
+				let left = arr[i].left
+				let top = arr[i].top
+				let target = imgDiv[n]
+				target.style.zIndex = 1
+				target.style.transform = 'translate('+ left +'px,' + top+'px)'
+				target.style.opacity = opacity
 			},
 			//生成图片及动画
 			generate: function() {
 				let _this = this
+				//初始化原来数据
+				_this.isShow = false
+				_this.isTake = false
+				_this.isCompare = false
+				_this.isGoCompare = false
+
 				if(_this.number && _this.number < _this.imgs.length){
 					_this.isShow = true
 					_this.isTake = true
@@ -119,6 +155,9 @@
 							_this.rImgs.splice(j,1)
 						}
 					}
+					(function(){         
+			       	  	_this.animate(i,_this.originalrImgs,document.querySelectorAll(".img-b"),1)
+				   	})(i);//调用时参数
 				}
 			}
 		}
