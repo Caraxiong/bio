@@ -137,7 +137,7 @@
 				if(_this.rmImg){
 					_this.zoomOut(_this.rmImg,document.querySelectorAll(".img-b"))
 				}
-				if(_this.number && _this.number < _this.imgs.length){
+				if(_this.number && _this.number < _this.imgs.length && _this.number > 0){
 					_this.isRandom = false
 					_this.isShow = true
 					_this.isTake = true
