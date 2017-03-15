@@ -51,7 +51,6 @@
 				let scrollT = document.documentElement.scrollTop || document.body.scrollTop
 				let wL = (window.innerWidth - width) / 2
 				let wT = scrollT > 0 ? (window.innerHeight - height) / 2 + scrollT : (window.innerHeight - height) / 2
-				
 				for(let i = 0;i < num;i++){
 					if(len > 0){
 						//产生一个随机索引
@@ -66,12 +65,21 @@
 						target.style.zIndex = 1002
 						target.style.transform = 'translate('+ -left +'px,' + -top+'px)'
 						// target.style.opacity = 0
-
-						if(rArr.indexOf(arr[randomIndex]) !== '-1'){
-							rArr.push({"index":randomIndex,"val":arr[randomIndex]})
-						}else{
-							i -= 1
+						let flag = true
+						if(rArr.length > 0){
+							for(let j = 0 ;j < rArr.length ; j++){
+								if(rArr[j].url == arr[randomIndex].url){
+									flag = false
+									i -= 1
+									break
+								}else{
+								}
+							}
 						}
+						if(flag){
+							rArr.push({"index":randomIndex,"url":arr[randomIndex].url})
+						}
+						console.log(rArr)
 					}else{
 						break
 					}
@@ -87,7 +95,6 @@
 				div.style.background = '#fff'
 				div.style.zIndex = 1001
 				document.body.appendChild(div)
-
 				return rArr
 			},
 			//随机删除一个图片
