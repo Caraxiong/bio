@@ -17,13 +17,17 @@ module.exports = {
             {
                 test: /\.vue$/, loader: 'vue'
             },
+            // {
+            //     test: /\.(jpe?g|png|gif|svg|mp3)$/,
+            //     loader: "url",
+            //     query: {
+            //         name: 'images/[name].[ext]',
+            //         limit: 1
+            //     }
+            // },
             {
-                test: /\.(jpe?g|png|gif|svg|mp3)$/,
-                loader: "url",
-                query: {
-                    name: 'images/[name].[ext]',
-                    limit: 1
-                }
+              test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/,
+              loader: 'url-loader?limit=8192'
             },
             {
                 test: /\.css$/,
@@ -40,7 +44,12 @@ module.exports = {
             {
                 test: /\.styl/,
                 loader: "vue-style!css!stylus"
-            }, {
+            },
+            {
+              test: /\.json$/,
+              loader: 'json-loader'
+            },
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel'

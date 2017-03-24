@@ -12,7 +12,7 @@ module.exports = {
     },
     output: {
         path: './dist',
-        publicPath: '/dist/',
+        publicPath: '../dist/',
         filename: '[name].[hash:8].js',
         chunkFilename: '[name].[hash:8].js'
     },
@@ -21,13 +21,17 @@ module.exports = {
             {
                 test: /\.vue$/, loader: 'vue'
             },
+            // {
+            //     test: /\.(jpe?g|png|gif|svg|mp3)$/,
+            //     loader: "url",
+            //     query: {
+            //         name: 'images/[name].[hash:8].[ext]',
+            //         limit: 1
+            //     }
+            // },
             {
-                test: /\.(jpe?g|png|gif|svg|mp3)$/,
-                loader: "url",
-                query: {
-                    name: 'images/[name].[hash:8].[ext]',
-                    limit: 1
-                }
+              test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/,
+              loader: 'url-loader?limit=8192'
             },
             {
                 test: /\.css$/,
@@ -44,7 +48,12 @@ module.exports = {
             {
                 test: /\.styl/,
                 loader: ExtractTextPlugin.extract("css!postcss!stylus")
-            }, {
+            }, 
+            {
+              test: /\.json$/,
+              loader: 'json-loader'
+            },
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel'
@@ -82,7 +91,7 @@ module.exports = {
         }),
 
         new HtmlWebpackPlugin({
-            template: 'index.tpl.html'
+            template: 'index.html'
         })
 
     ]

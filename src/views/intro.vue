@@ -5,11 +5,11 @@
 </template>
 <script>
 	require('../style/intro.scss');
-	import axios from 'axios'
+	// import axios from 'axios'
 	module.exports = {
 		data: function (){
 			return {
-				list:[],
+				list: [],
 				level:1,
 				mouseX:0,
 				mouseY:0,
@@ -25,9 +25,9 @@
 		methods: {
 			getList: function() {
 				let _this = this
-				axios.get('src/data/intro.json')
-					.then((res) => {
-						this.list = res.data
+				// axios.get('src/data/intro.json')
+				// 	.then((res) => {
+						this.list = require('../data/intro.json')
 
 						//如果当前浏览器支持transform，则加transfrom
 						if(_this.isSupportsTransforms()){
@@ -52,7 +52,7 @@
 								_this.mouseY = event.clientY
 							}
 						});
-					})
+					// })
 			},
 			isSupportsTransforms: function() {
 				return  'WebkitTransform' in document.body.style ||

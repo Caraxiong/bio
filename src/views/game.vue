@@ -14,7 +14,6 @@
 </template>
 <script>
 	require('../style/game.scss');
-	import axios from 'axios'
 	module.exports = {
 		data: function() {
 			return {
@@ -36,10 +35,10 @@
 		},
 		methods: {
 			getImgs: function() {
-				axios.get('src/data/game.json')
-					.then((res) => {
-						this.imgs = res.data.list2
-					})
+			// 	axios.get('src/data/game.json')
+			// 		.then((res) => {
+						this.imgs = require('../data/game.json').list2
+			// 		})
 			},
 			//随机生成几个图片
 			randomImgs: function(arr,num) {
