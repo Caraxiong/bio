@@ -1,91 +1,91 @@
 {
 	"list1":[{
-		    "url":"../src/imgs/game/0.png",
+		    "url":"imgs/game/0.png",
 		    "des":"0"
 		},
 		{
-			"url":"../src/imgs/game/1.png",
+			"url":"imgs/game/1.png",
 		    "des":"1"
 		},
 		{
-			"url":"../src/imgs/game/2.png",
+			"url":"imgs/game/2.png",
 		    "des":"2"
 		},
 		{
-			"url":"../src/imgs/game/3.png",
+			"url":"imgs/game/3.png",
 		    "des":"3"
 		},
 		{
-			"url":"../src/imgs/game/4.png",
+			"url":"imgs/game/4.png",
 		    "des":"4"
 		},
 		{
-			"url":"../src/imgs/game/5.png",
+			"url":"imgs/game/5.png",
 		    "des":"5"
 		},
 		{
-			"url":"../src/imgs/game/6.png",
+			"url":"imgs/game/6.png",
 		    "des":"6"
 		},
 		{
-			"url":"../src/imgs/game/7.png",
+			"url":"imgs/game/7.png",
 		    "des":"7"
 		},
 		{
-			"url":"../src/imgs/game/8.png",
+			"url":"imgs/game/8.png",
 		    "des":"8"
 		},
 		{
-			"url":"../src/imgs/game/9.png",
+			"url":"imgs/game/9.png",
 		    "des":"9"
 		}],
 	"list2":[{
-			"url":"../src/imgs/game/a1.png",
+			"url":"imgs/game/a1.png",
 		    "des":"飞机"
 		},{
-			"url":"../src/imgs/game/a2.png",
+			"url":"imgs/game/a2.png",
 		    "des":"鱼"
 		},{
-			"url":"../src/imgs/game/a3.png",
+			"url":"imgs/game/a3.png",
 		    "des":"青蛙"
 		},{
-			"url":"../src/imgs/game/a4.png",
+			"url":"imgs/game/a4.png",
 		    "des":"马"
 		},{
-			"url":"../src/imgs/game/a5.png",
+			"url":"imgs/game/a5.png",
 		    "des":"裙子"
 		},{
-			"url":"../src/imgs/game/a6.png",
+			"url":"imgs/game/a6.png",
 		    "des":"老虎"
 		},{
-			"url":"../src/imgs/game/a7.png",
+			"url":"imgs/game/a7.png",
 		    "des":"兔子"
 		},{
-			"url":"../src/imgs/game/a8.png",
+			"url":"imgs/game/a8.png",
 		    "des":"猪"
 		},{
-			"url":"../src/imgs/game/a9.png",
+			"url":"imgs/game/a9.png",
 		    "des":"闹钟"
 		},{
-			"url":"../src/imgs/game/a10.png",
+			"url":"imgs/game/a10.png",
 		    "des":"啤酒"
 		},{
-			"url":"../src/imgs/game/a11.png",
+			"url":"imgs/game/a11.png",
 		    "des":"蛋糕"
 		},{
-			"url":"../src/imgs/game/a12.png",
+			"url":"imgs/game/a12.png",
 		    "des":"蜡烛"
 		},{
-			"url":"../src/imgs/game/a13.png",
+			"url":"imgs/game/a13.png",
 		    "des":"鸡"
 		},{
-			"url":"../src/imgs/game/a14.png",
+			"url":"imgs/game/a14.png",
 		    "des":"熊猫"
 		},{
-			"url":"../src/imgs/game/a15.png",
+			"url":"imgs/game/a15.png",
 		    "des":"羊"
 		},{
-			"url":"../src/imgs/game/a16.png",
+			"url":"imgs/game/a16.png",
 		    "des":"酒杯"
 		}]
 }

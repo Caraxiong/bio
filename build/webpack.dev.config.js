@@ -8,6 +8,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
+        //最终部署到服务器上时的路径
         publicPath: '/dist/',
         filename: '[name].js',
         chunkFilename: '[name].js'

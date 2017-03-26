@@ -31,7 +31,14 @@ module.exports = {
             // },
             {
               test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/,
-              loader: 'url-loader?limit=8192'
+              loader: 'url-loader?limit=8192&name=imgs/[name].[ext]'
+            },
+            { 
+              test: /\.(png|jpeg|gif)$/,
+              loader: 'file-loader',
+              query: {
+                name:'imgs/[name].[ext]'
+              }
             },
             {
                 test: /\.css$/,
