@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+    //entry可以是个字符串或数组或者是对象。
     entry: {
         app: path.resolve(__dirname, '../src/main.js'),
         vendors: ['vue', 'vue-router']
